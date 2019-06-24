@@ -8,17 +8,20 @@
     test
     <h1><%= title %>
     </h1> 
-    <p>Welcome to <%= title %></p> 
+    <p>Welcome to <%= title %></p>
+    <div id="grid">
     <% if (data != null) { %> 
       <table border="1"> 
         <% for(var i=0; i < data.length; i++){ %> 
+          <input type="hidden" name="prodparamlistJson" value="<%=JSON.stringify(data[i].prodparamlist)%>" /> 
           <tr> 
             <td width="200px"><%= data[i].prodcd %></td> 
             <td width="200px"><%= data[i].prodnm %></td> 
-            <td width="300px"><%= data[i].prodparamlist.paramTypeCd %></td> 
+            <td width="300px"><%= data[i].prodparamlist %></td> 
           </tr> 
         <% } %> 
       </table> 
     <% } %> 
+    </div>
   </body> 
 </html>

@@ -9,7 +9,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 //kkt test
 var testRouter = require('./routes/test');
-var dataRouter = require('./routes/data');
+var dataRouter = require('./routes/data'); 
 
 
 var app = express();
