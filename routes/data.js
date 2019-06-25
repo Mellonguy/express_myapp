@@ -1,9 +1,7 @@
 var express = require('express'); 
 var router = express.Router();
-var tui-grid = require('tui-grid'); 
-
-
 const{Client} = require('pg');
+const tuiGrid = require('tui-grid').Grid;
 
 const client = new Client({
     host: '61.255.238.83',
@@ -13,31 +11,7 @@ const client = new Client({
     port: 5432
 });
 
-const grid = new tui.Grid({
-    el: document.getElementById('grid'),
-    data: gridData,
-    scrollX: false,
-    scrollY: false,
-    columns: [
-        {
-            header: 'bodyserail',
-            name: 'bodyserail'
-        },
-        {
-            header: 'prodcd',
-            name: 'prodcd'
-        },
-        {
-            header: 'prodnm',
-            name: 'prodnm'
-        },
-        {
-            header: 'prodparamlist',
-            name: 'prodparamlist'
-        }
-    ]
 
-})
 const rows = [];
 
 
@@ -45,7 +19,7 @@ const rows = [];
 router.get('/', function(request, response, next) { 
     client.connect();
 
-    var query = client.query('select * from iftg.adtn_prod_lst', (err,res)=>{
+    var query = client.query('select bodyserail, prodcd, prodnm, prodparamlist from iftg.adtn_prod_lst', (err,res)=>{
         // console.log(err,res);       
     });
 
@@ -55,7 +29,7 @@ router.get('/', function(request, response, next) {
 
 
     query.on('end', function(row,err) { 
-        response.render('data', { title: 'Express', data:rows }); 
+        response.render('data', { title: 'Express', data:row }); 
         client.end();
     }); 
  

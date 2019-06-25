@@ -2,15 +2,43 @@
 <html> 
   <head> 
     <title><%= title %></title> 
-    <link rel='stylesheet' href='/stylesheets/style.css' /> 
+    <link rel="stylesheet" type="text/css" href="node_modules/tui-grid/dist/tui-grid.css" />
+    <script src="node_modules/tui-grid/dist/tui-grid.js"></script>
+    <%
+    const grid = new tui.Grid({
+        el: document.getElementById('grid'),
+        data: data,
+        scrollX: false,
+        scrollY: false,
+        columns: [
+            {
+                header: 'bodyserail',
+                name: 'bodyserail'
+            },
+            {
+                header: 'prodcd',
+                name: 'prodcd'
+            },
+            {
+                header: 'prodnm',
+                name: 'prodnm'
+            },
+            {
+                header: 'prodparamlist',
+                name: 'prodparamlist'
+            }
+          ]
+      });
+
+    %>
   </head> 
   <body> 
-    test
+    test1
     <h1><%= title %>
     </h1> 
     <p>Welcome to <%= title %></p>
-    <div id="grid">
-    <% if (data != null) { %> 
+    <div id="grid"></div>
+      <!-- <% if (data != null) { %> 
       <table border="1"> 
         <% for(var i=0; i < data.length; i++){ %> 
           <input type="hidden" name="prodparamlistJson" value="<%=JSON.stringify(data[i].prodparamlist)%>" /> 
@@ -21,7 +49,10 @@
           </tr> 
         <% } %> 
       </table> 
-    <% } %> 
-    </div>
+    <% } %>  -->
   </body> 
+
+
+  
+  
 </html>
