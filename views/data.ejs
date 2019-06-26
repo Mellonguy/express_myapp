@@ -6,10 +6,9 @@
     <script src="node_modules/tui-grid/dist/tui-grid.js"></script>
     <%
     const grid = new tui.Grid({
-        el: document.getElementById('grid'),
-        data: data,
-        scrollX: false,
-        scrollY: false,
+        el: document.getElementById('sample'),
+        domWidth : 100,
+        data: sampledata,
         columns: [
             {
                 header: 'bodyserail',
@@ -22,21 +21,17 @@
             {
                 header: 'prodnm',
                 name: 'prodnm'
-            },
-            {
-                header: 'prodparamlist',
-                name: 'prodparamlist'
             }
           ]
       });
 
-    %>
+      
+    </script>
+    
   </head> 
   <body> 
-    test1
-    <h1><%= title %>
-    </h1> 
-    <p>Welcome to <%= title %></p>
+    <h1><%= title %></h1> 
+    <p>Welcome to <%= title %></p>    
     <div id="grid"></div>
       <!-- <% if (data != null) { %> 
       <table border="1"> 
@@ -53,6 +48,5 @@
   </body> 
 
 
-  
   
 </html>

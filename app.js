@@ -4,12 +4,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 //kkt test
 var testRouter = require('./routes/test');
 var dataRouter = require('./routes/data'); 
+
+// var tuiRouter = require('./routes/tui'); 
 
 
 var app = express();
@@ -22,13 +23,17 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 //kkt test
 app.use('/test',testRouter);
 app.use('/data',dataRouter);
+
+// app.use('/tui',tuiRouter);
 
 
 
