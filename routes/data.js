@@ -1,9 +1,9 @@
 var express = require('express'); 
 var router = express.Router();
-const{Client} = require('pg');
-const tuiGrid = require('tui-grid').Grid;
+const Pool = require('pg');
 
-const client = new Client({
+Pool.Connection
+const pool = Pool({
     host: '61.255.238.83',
     user: 'postgres',
     password: 'P@ssw0rd',
@@ -16,10 +16,10 @@ const rows = [];
 
 
 /* GET home page. */ 
-router.get('/', function(request, response, next) { 
-    client.connect();
+router.get('/', function(req, res, next) { 
+    // client.connect();
 
-    var query = client.query('select bodyserail, prodcd, prodnm, prodparamlist from iftg.adtn_prod_lst', (err,res)=>{
+    var query = pool.query('select bodyserail, prodcd, prodnm, prodparamlist from iftg.adtn_prod_lst', (err,res)=>{
         // console.log(err,res);       
     });
 
@@ -29,13 +29,13 @@ router.get('/', function(request, response, next) {
 
 
     query.on('end', function(row,err) { 
-        response.render('data', { title: 'Express', data:row }); 
-        client.end();
+        res.render('data', { title: 'Express', data:rows }); 
+        pool.end();
     }); 
  
     query.on('error', function(error) { 
         console.log("ERROR!!" + error); 
-        response.render('data', { title: title, data: null, message: "ERROR is occured!" }); 
+        res.render('data', { title: title, data: null, message: "ERROR is occured!" }); 
     }); 
 
  
